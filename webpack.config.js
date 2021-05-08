@@ -30,7 +30,7 @@ module.exports = {
                     // Compiles Sass to CSS
                     "sass-loader",
                 ],
-            },
+            }
         ]
     }
 };
