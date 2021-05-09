@@ -1,3 +1,29 @@
 body {
     background-color: aquamarine;
+    padding: 0;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.image-preload {
+	position: absolute;
+	left: -9999px;
+}
+
+.nosupport {
+	display: none;
+	margin: 0 auto;
+	font-size: 1.25em;
+	padding: 1em;
+	position: fixed;
+	bottom: 0;
+	width: 100vw;
+	text-align: center;
+	background: #a74e71;
+	z-index: 1000;
+}
+
+.no-webgl .nosupport {
+	display: block;
 }
