@@ -84,6 +84,12 @@ Raindrops.prototype={
 
     this.update();
   },
+  cleanup() {
+    delete this.canvas;
+    delete this.ctx;
+    delete this.droplets;
+    delete this.dropletsCtx;
+  },
   get deltaR(){
     return this.options.maxR-this.options.minR;
   },
@@ -368,7 +374,10 @@ Raindrops.prototype={
 
     this.drops = newDrops;
   },
+
   update(){
+    if (!this.ctx) return;
+
     this.clearCanvas();
 
     let now=Date.now();

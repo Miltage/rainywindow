@@ -14,12 +14,12 @@ const defaultOptions={
 }
 function RainRenderer(canvas,canvasLiquid, imageFg, imageBg, imageShine=null,options={}){
 
-  this.canvas=canvas;
-  this.canvasLiquid=canvasLiquid;
-  this.imageShine=imageShine;
-  this.imageFg=imageFg;
-  this.imageBg=imageBg;
-  this.options=Object.assign({},defaultOptions, options);
+  this.canvas = canvas;
+  this.canvasLiquid = canvasLiquid;
+  this.imageShine = imageShine;
+  this.imageFg = imageFg;
+  this.imageBg = imageBg;
+  this.options = Object.assign({}, defaultOptions, options);
   this.init();
 }
 
@@ -43,7 +43,7 @@ RainRenderer.prototype={
   init(){
     this.width=this.canvas.width;
     this.height=this.canvas.height;
-    this.gl=new GL(this.canvas, {alpha:false}, Shaders.vertShader, Shaders.fragShader);
+    this.gl=new GL(this.canvas, {alpha:true}, Shaders.vertShader, Shaders.fragShader);
     let gl=this.gl;
     this.programWater=gl.program;
 
@@ -59,7 +59,6 @@ RainRenderer.prototype={
     gl.createUniform("1f","parallaxBg",this.options.parallaxBg);
     gl.createUniform("1f","parallaxFg",this.options.parallaxFg);
 
-
     gl.createTexture(null,0);
 
     this.textures=[
@@ -68,7 +67,7 @@ RainRenderer.prototype={
       {name:'textureBg', img:this.imageBg}
     ];
 
-    this.textures.forEach((texture,i)=>{
+    this.textures.forEach((texture, i) => {
       gl.createTexture(texture.img,i+1);
       gl.createUniform("1i",texture.name,i+1);
     });
@@ -76,15 +75,17 @@ RainRenderer.prototype={
     this.draw();
   },
   draw(){
+    if (!this.gl) return;
+    
     this.gl.useProgram(this.programWater);
-    this.gl.createUniform("2f", "parallax", this.parallaxX,this.parallaxY);
+    //this.gl.createUniform("2f", "parallax", this.parallaxX,this.parallaxY);
     this.updateTexture();
     this.gl.draw();
 
     requestAnimationFrame(this.draw.bind(this));
   },
   updateTextures(){
-    this.textures.forEach((texture,i)=>{
+    this.textures.forEach((texture,i) => {
       this.gl.activeTexture(i+1);
       this.gl.updateTexture(texture.img);
     })
@@ -93,14 +94,14 @@ RainRenderer.prototype={
     this.gl.activeTexture(0);
     this.gl.updateTexture(this.canvasLiquid);
   },
-  resize(){
-
-  },
   get overlayTexture(){
 
   },
   set overlayTexture(v){
 
+  },
+  cleanup() {
+    delete this.gl;
   }
 }
 

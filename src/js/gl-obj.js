@@ -17,8 +17,8 @@ GL.prototype={
     this.program=this.createProgram(vert,frag);
     this.useProgram(this.program);
   },
-  createProgram(vert,frag){
-    let program=WebGL.createProgram(this.gl,vert,frag);
+  createProgram(vert, frag) {
+    let program = WebGL.createProgram(this.gl, vert, frag);
     return program;
   },
   useProgram(program){
@@ -40,6 +40,10 @@ GL.prototype={
   draw(){
     WebGL.setRectangle(this.gl, -1, -1, 2, 2);
     this.gl.drawArrays(this.gl.TRIANGLES, 0, 6);
+  },
+  resize(width, height){
+    this.width = width;
+    this.height = height;
   }
 }
 

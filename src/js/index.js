@@ -34,8 +34,6 @@ let raindrops,
   renderer,
   canvas;
 
-let parallax={x:0,y:0};
-
 let weatherData=null;
 let curWeatherData=null;
 let blend={v:0};
@@ -84,7 +82,11 @@ function loadTextures(){
 loadTextures();
 
 function init(){
-  canvas=document.querySelector('#container');
+  //canvas = document.querySelector('#container');
+  if (canvas) document.body.removeChild(canvas);
+
+  canvas = document.createElement("canvas");
+  canvas.style.position = "absolute";
 
   let dpi=window.devicePixelRatio;
   canvas.width=window.innerWidth*dpi;
@@ -92,7 +94,9 @@ function init(){
   canvas.style.width=window.innerWidth+"px";
   canvas.style.height=window.innerHeight+"px";
 
-  raindrops=new Raindrops(
+  document.body.appendChild(canvas);
+
+  raindrops = new Raindrops(
     canvas.width,
     canvas.height,
     dpi,
@@ -110,7 +114,7 @@ function init(){
   textureBg = createCanvas(textureBgSize.width,textureBgSize.height);
   textureBgCtx = textureBg.getContext('2d');
 
-  generateTextures(textureRainFg,textureRainBg);
+  generateTextures(textureRainFg, textureRainBg);
 
   renderer = new RainRenderer(canvas, raindrops.canvas, textureFg, textureBg, null,{
     brightness:1.04,
@@ -124,27 +128,10 @@ function init(){
 }
 
 function setupEvents(){
-
-  setupParallax();
-  setupWeather();
-  setupFlash();
+  //setupWeather();
+  //setupFlash();
 }
-function setupParallax(){
-  document.addEventListener('mousemove',(event)=>{
-    let x=event.pageX;
-    let y=event.pageY;
 
-    TweenLite.to(parallax,1,{
-      x:((x/canvas.width)*2)-1,
-      y:((y/canvas.height)*2)-1,
-      ease:Quint.easeOut,
-      onUpdate:()=>{
-        renderer.parallaxX=parallax.x;
-        renderer.parallaxY=parallax.y;
-      }
-    })
-  });
-}
 function setupFlash(){
   setInterval(()=>{
     if(chance(curWeatherData.flashChance)){
@@ -152,6 +139,7 @@ function setupFlash(){
     }
   },500)
 }
+
 function setupWeather(){
   setupWeatherData();
   window.addEventListener("hashchange",(event)=>{
@@ -159,6 +147,7 @@ function setupWeather(){
   });
   updateWeather();
 }
+
 function setupWeatherData(){
   let defaultWeather={
     raining:true,
@@ -305,10 +294,17 @@ function flash(baseBg,baseFg,flashBg,flashFg){
   });
 
 }
+
 function generateTextures(fg,bg,alpha=1){
   textureFgCtx.globalAlpha=alpha;
   textureFgCtx.drawImage(fg,0,0,textureFgSize.width,textureFgSize.height);
 
   textureBgCtx.globalAlpha=alpha;
   textureBgCtx.drawImage(bg,0,0,textureBgSize.width,textureBgSize.height);
+}
+
+window.onresize = () => {
+  raindrops.cleanup();
+  renderer.cleanup();
+  init();
 }
