@@ -22,6 +22,7 @@
     "css-loader": "^5.2.4",
     "glslify": "^7.1.1",
     "gsap": "^3.6.1",
+    "howler": "^2.2.1",
     "lodash": "^4.17.21",
     "style-loader": "^2.0.0"
   }

@@ -2,6 +2,13 @@ import loadImages from "./image-loader";
 import times from "./times.js";
 import createCanvas from "./create-canvas.js";
 import {random, chance} from "./random";
+import { Howl, Howler } from 'howler';
+
+
+
+var sound = new Howl({
+  src: ['audio/raindrop.wav']
+});
 
 let dropSize=64;
 const Drop={
@@ -193,6 +200,7 @@ Raindrops.prototype={
     if(this.drops.length >= this.options.maxDrops*this.areaMultiplier || drop==null) return false;
 
     this.drops.push(drop);
+
     return true;
   },
   updateRain(timeScale){
@@ -213,9 +221,10 @@ Raindrops.prototype={
           spreadX:1.5,
           spreadY:1.5,
         });
-        if(rainDrop!=null){
+        
+        if(rainDrop!=null)
           rainDrops.push(rainDrop);
-        }
+        
       }
     }
     return rainDrops;

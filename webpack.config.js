@@ -13,6 +13,7 @@ module.exports = {
           patterns: [
             { from: "src/index.html" },
             { from: "src/img", to: "img" },
+            { from: "src/audio", to: "audio" },
           ],
         }),
     ],

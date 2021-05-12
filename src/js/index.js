@@ -1,5 +1,7 @@
 import '../scss/styles.scss';
 
+import { Howl, Howler } from 'howler';
+
 import 'core-js';
 import RainRenderer from "./rain-renderer";
 import Raindrops from "./raindrops";
@@ -7,7 +9,16 @@ import loadImages from "./image-loader";
 import createCanvas from "./create-canvas";
 import TweenLite from 'gsap';
 import times from './times';
-import {random,chance} from './random';
+import { random, chance } from './random';
+
+var sound = new Howl({
+  src: ['audio/rain.wav'],
+  volume: 0.5,
+  loop: true
+});
+
+var id = sound.play();
+sound.fade(0, 0.5, 10000, id);
 
 let textureRainFg, textureRainBg,
   textureStormLightningFg, textureStormLightningBg,
@@ -128,7 +139,7 @@ function init(){
 }
 
 function setupEvents(){
-  //setupWeather();
+  setupWeather();
   //setupFlash();
 }
 
@@ -149,7 +160,7 @@ function setupWeather(){
 }
 
 function setupWeatherData(){
-  let defaultWeather={
+  let defaultWeather = {
     raining:true,
     minR:20,
     maxR:50,
@@ -168,7 +179,7 @@ function setupWeatherData(){
   };
 
   function weather(data){
-    return Object.assign({},defaultWeather,data);
+    return Object.assign({}, defaultWeather, data);
   }
 
   weatherData={
@@ -176,7 +187,6 @@ function setupWeatherData(){
       rainChance:0.35,
       dropletsRate:50,
       raining:true,
-      // trailRate:2.5,
       fg:textureRainFg,
       bg:textureRainBg
     }),
