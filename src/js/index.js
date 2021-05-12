@@ -33,8 +33,8 @@ let textureFg,
   textureBgCtx;
 
 let textureBgSize={
-  width:384,
-  height:256
+  width:500,
+  height:384
 }
 let textureFgSize={
   width:96,
@@ -54,8 +54,8 @@ function loadTextures(){
     {name:"dropAlpha",src:"img/drop-alpha.png"},
     {name:"dropColor",src:"img/drop-color.png"},
 
-    {name:"textureRainFg",src:"img/weather/texture-rain-fg.png"},
-    {name:"textureRainBg",src:"img/weather/texture-rain-bg.png"},
+    {name:"textureRainFg",src:"img/weather/city.png"},
+    {name:"textureRainBg",src:"img/weather/city.png"},
 
     {name:"textureStormLightningFg",src:"img/weather/texture-storm-lightning-fg.png"},
     {name:"textureStormLightningBg",src:"img/weather/texture-storm-lightning-bg.png"},
