@@ -11,14 +11,18 @@ import TweenLite from 'gsap';
 import times from './times';
 import { random, chance } from './random';
 
-var sound = new Howl({
+var rainSound = new Howl({
   src: ['audio/rain.wav'],
   volume: 0.5,
   loop: true
 });
 
-var id = sound.play();
-sound.fade(0, 0.5, 10000, id);
+var id = rainSound.play();
+rainSound.fade(0, 0.5, 10000, id);
+
+document.getElementById("rain-vol").oninput = function() {
+  rainSound.volume(this.value/100 * 0.5);
+}
 
 let textureRainFg, textureRainBg,
   textureStormLightningFg, textureStormLightningBg,
