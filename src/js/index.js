@@ -86,9 +86,7 @@ let textureFgSize={
   height:64
 }
 
-let raindrops,
-  renderer,
-  canvas;
+let raindrops, renderer, canvas, flashInterval;
 
 let weatherData=null;
 let curWeatherData=null;
@@ -189,7 +187,7 @@ function setupEvents(){
 }
 
 function setupFlash() {
-  setInterval(() => {
+  flashInterval = setInterval(() => {
     if(chance(curWeatherData.flashChance)){
       flash(curWeatherData.bg,curWeatherData.fg,curWeatherData.flashBg,curWeatherData.flashFg);
     }
@@ -278,18 +276,7 @@ function setupWeatherData(){
     }),
   };
 }
-function updateWeather(){
-  /*let hash=window.location.hash;
-  let currentSlide=null;
-  let currentNav=null;
-  if(hash!=""){
-    currentSlide = document.querySelector(hash);
-  }
-  if(currentSlide==null){
-    currentSlide = document.querySelector(".slide");
-    hash="#"+currentSlide.getAttribute("id");
-  }
-  currentNav=document.querySelector("[href='"+hash+"']");*/
+function updateWeather() {
   let data = weatherData['rain'];
   curWeatherData = data;
 
@@ -305,16 +292,7 @@ function updateWeather(){
       generateTextures(data.fg,data.bg,blend.v);
       renderer.updateTextures();
     }
-  })
-
-  /*let lastSlide=document.querySelector(".slide--current");
-  if(lastSlide!=null) lastSlide.classList.remove("slide--current");
-
-  let lastNav=document.querySelector(".nav-item--current");
-  if(lastNav!=null) lastNav.classList.remove("nav-item--current");
-
-  currentSlide.classList.add("slide--current");
-  currentNav.classList.add("nav-item--current");*/
+  });
 }
 
 function flash(baseBg,baseFg,flashBg,flashFg){
@@ -361,5 +339,6 @@ function generateTextures(fg,bg,alpha=1){
 window.onresize = () => {
   raindrops.cleanup();
   renderer.cleanup();
+  clearInterval(flashInterval);
   init();
 }
