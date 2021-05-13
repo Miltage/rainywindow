@@ -57,12 +57,14 @@ function closeFullscreen() {
   }
 }
 
-document.getElementById("toggle-fullscreen").onclick = function() {
+document.getElementById("toggle-fullscreen").onclick = toggleFullscreen;
+
+function toggleFullscreen() {
   if (!isFullscreen)
     openFullscreen();
   else
     closeFullscreen();
-  
+
   isFullscreen = !isFullscreen;
 }
 
@@ -76,6 +78,23 @@ function toggleUI() {
 }
 
 document.getElementById("toggle-ui").onclick = toggleUI;
+
+document.onkeypress = (event) => {
+  switch (event.code) {
+    case "Space":
+      toggleUI();
+      break;
+    case "Enter":
+      toggleFullscreen();
+      break;
+    case "Esc": // IE/Edge specific value
+    case "Escape":
+      closeFullscreen();
+      break;
+    default:
+      return; // Quit when this doesn't handle the key event.
+  }
+}
 
 let textureRainFg, textureRainBg,
   textureStormLightningFg, textureStormLightningBg,
