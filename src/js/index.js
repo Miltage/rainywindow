@@ -57,8 +57,8 @@ function loadTextures(){
     {name:"textureRainFg",src:"img/weather/city.png"},
     {name:"textureRainBg",src:"img/weather/city.png"},
 
-    {name:"textureStormLightningFg",src:"img/weather/texture-storm-lightning-fg.png"},
-    {name:"textureStormLightningBg",src:"img/weather/texture-storm-lightning-bg.png"},
+    {name:"textureStormLightningFg",src:"img/weather/city-flash.png"},
+    {name:"textureStormLightningBg",src:"img/weather/city-flash.png"},
 
     {name:"textureFalloutFg",src:"img/weather/texture-fallout-fg.png"},
     {name:"textureFalloutBg",src:"img/weather/texture-fallout-bg.png"},
@@ -140,15 +140,15 @@ function init(){
 
 function setupEvents(){
   setupWeather();
-  //setupFlash();
+  setupFlash();
 }
 
-function setupFlash(){
-  setInterval(()=>{
+function setupFlash() {
+  setInterval(() => {
     if(chance(curWeatherData.flashChance)){
       flash(curWeatherData.bg,curWeatherData.fg,curWeatherData.flashBg,curWeatherData.flashFg);
     }
-  },500)
+  }, 500);
 }
 
 function setupWeather(){
@@ -172,9 +172,9 @@ function setupWeatherData(){
     trailScaleRange:[0.25,0.35],
     fg:textureRainFg,
     bg:textureRainBg,
-    flashFg:null,
-    flashBg:null,
-    flashChance:0,
+    flashFg:textureStormLightningFg,
+    flashBg:textureStormLightningBg,
+    flashChance:0.1,
     collisionRadiusIncrease:0.0002
   };
 
@@ -182,7 +182,7 @@ function setupWeatherData(){
     return Object.assign({}, defaultWeather, data);
   }
 
-  weatherData={
+  weatherData = {
     rain:weather({
       rainChance:0.35,
       dropletsRate:50,
@@ -234,7 +234,7 @@ function setupWeatherData(){
   };
 }
 function updateWeather(){
-  let hash=window.location.hash;
+  /*let hash=window.location.hash;
   let currentSlide=null;
   let currentNav=null;
   if(hash!=""){
@@ -244,9 +244,9 @@ function updateWeather(){
     currentSlide = document.querySelector(".slide");
     hash="#"+currentSlide.getAttribute("id");
   }
-  currentNav=document.querySelector("[href='"+hash+"']");
-  let data=weatherData[currentSlide.getAttribute('data-weather')];
-  curWeatherData=data;
+  currentNav=document.querySelector("[href='"+hash+"']");*/
+  let data = weatherData['rain'];
+  curWeatherData = data;
 
   raindrops.options=Object.assign(raindrops.options,data)
 
@@ -262,14 +262,14 @@ function updateWeather(){
     }
   })
 
-  let lastSlide=document.querySelector(".slide--current");
+  /*let lastSlide=document.querySelector(".slide--current");
   if(lastSlide!=null) lastSlide.classList.remove("slide--current");
 
   let lastNav=document.querySelector(".nav-item--current");
   if(lastNav!=null) lastNav.classList.remove("nav-item--current");
 
   currentSlide.classList.add("slide--current");
-  currentNav.classList.add("nav-item--current");
+  currentNav.classList.add("nav-item--current");*/
 }
 
 function flash(baseBg,baseFg,flashBg,flashFg){
@@ -278,7 +278,7 @@ function flash(baseBg,baseFg,flashBg,flashFg){
     return new Promise((resolve,reject)=>{
       TweenLite.to(flashValue,t,{
         v:to,
-        ease:Quint.easeOut,
+        ease: "power4.out",
         onUpdate:()=>{
           generateTextures(baseFg,baseBg);
           generateTextures(flashFg,flashBg,flashValue.v);

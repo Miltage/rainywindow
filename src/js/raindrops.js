@@ -2,13 +2,6 @@ import loadImages from "./image-loader";
 import times from "./times.js";
 import createCanvas from "./create-canvas.js";
 import {random, chance} from "./random";
-import { Howl, Howler } from 'howler';
-
-
-
-var sound = new Howl({
-  src: ['audio/raindrop.wav']
-});
 
 let dropSize=64;
 const Drop={
