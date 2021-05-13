@@ -71,6 +71,10 @@ body {
 				img {
 					max-width: 60px;
 					cursor: pointer;
+
+					&.disabled {
+						opacity: 0.3;
+					}
 				}
 	
 				.slider {

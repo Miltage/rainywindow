@@ -24,6 +24,15 @@ document.getElementById("rain-vol").oninput = function() {
   rainSound.volume(this.value/100 * 0.5);
 }
 
+document.getElementById("rain-icon").onclick = function() {
+  var muted = !this.classList.contains("disabled");
+  rainSound.mute(muted);
+  if (muted)
+    this.classList.add("disabled");
+  else
+    this.classList.remove("disabled");
+}
+
 let textureRainFg, textureRainBg,
   textureStormLightningFg, textureStormLightningBg,
   textureFalloutFg, textureFalloutBg,
