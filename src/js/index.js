@@ -20,6 +20,23 @@ var rainSound = new Howl({
 var id = rainSound.play();
 rainSound.fade(0, 0.5, 10000, id);
 
+var thunderSound1 = new Howl({
+  src: ['audio/thunder1.wav']
+});
+
+var thunderSound2 = new Howl({
+  src: ['audio/thunder2.wav']
+});
+
+var thunderSound3 = new Howl({
+  src: ['audio/thunder3.wav']
+});
+
+function playThunderSound() {
+  var options = [thunderSound1, thunderSound2, thunderSound3];
+  options[parseInt(Math.random() * options.length)].play();
+}
+
 document.getElementById("rain-vol").oninput = function() {
   rainSound.volume(this.value/100 * 0.5);
 }
@@ -220,7 +237,7 @@ function setupEvents(){
 function setupFlash() {
   flashInterval = setInterval(() => {
     if(chance(curWeatherData.flashChance)){
-      flash(curWeatherData.bg,curWeatherData.fg,curWeatherData.flashBg,curWeatherData.flashFg);
+      flash(curWeatherData.bg, curWeatherData.fg, curWeatherData.flashBg, curWeatherData.flashFg);
     }
   }, 500);
 }
@@ -356,6 +373,8 @@ function flash(baseBg,baseFg,flashBg,flashFg){
   }).then(()=>{
     transitionFlash(0,0.25);
   });
+
+  setTimeout(playThunderSound, 500 + Math.random() * 1000);
 
 }
 
