@@ -49,6 +49,23 @@ body {
 			}
 		}
 
+		.global-controls {
+			position: absolute;
+			top: 20px;
+			right: 20px;
+
+			img {
+				cursor: pointer;
+				opacity: 0.6;
+				-webkit-transition: .2s;
+				transition: opacity .2s;
+
+				&:hover {
+					opacity: 1;
+				}
+			}
+		}
+
 		.weather-controls {
 			display: flex;
 			justify-content: center;
