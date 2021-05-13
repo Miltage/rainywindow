@@ -33,6 +33,11 @@ var thunderSound3 = new Howl({
 });
 
 var thunderVolume = 1.0;
+var thunderEnabled = true;
+
+function toggleThunder() {
+  thunderEnabled = !thunderEnabled;
+}
 
 function playThunderSound() {
   var options = [thunderSound1, thunderSound2, thunderSound3];
@@ -45,17 +50,25 @@ document.getElementById("thunder-vol").oninput = function() {
   thunderVolume = this.value/100;
 }
 
+document.getElementById("thunder-icon").onclick = function() {
+  toggleThunder();
+  if (!thunderEnabled)
+    this.parentElement.classList.add("disabled");
+  else
+    this.parentElement.classList.remove("disabled");
+}
+
 document.getElementById("rain-vol").oninput = function() {
   rainSound.volume(this.value/100 * 0.5);
 }
 
 document.getElementById("rain-icon").onclick = function() {
-  var muted = !this.classList.contains("disabled");
+  var muted = !this.parentElement.classList.contains("disabled");
   rainSound.mute(muted);
   if (muted)
-    this.classList.add("disabled");
+    this.parentElement.classList.add("disabled");
   else
-    this.classList.remove("disabled");
+    this.parentElement.classList.remove("disabled");
 }
 
 var isFullscreen = false;
@@ -244,7 +257,7 @@ function setupEvents(){
 
 function setupFlash() {
   flashInterval = setInterval(() => {
-    if(chance(curWeatherData.flashChance)){
+    if(chance(curWeatherData.flashChance) && thunderEnabled){
       flash(curWeatherData.bg, curWeatherData.fg, curWeatherData.flashBg, curWeatherData.flashFg);
     }
   }, 5000);

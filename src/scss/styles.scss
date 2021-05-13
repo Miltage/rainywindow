@@ -87,14 +87,14 @@ body {
 				&:hover {
 					opacity: 1;
 				}
+
+				&.disabled {
+					opacity: 0.3;
+				}
 				
 				img {
 					max-width: 60px;
 					cursor: pointer;
-
-					&.disabled {
-						opacity: 0.3;
-					}
 				}
 	
 				.slider {
