@@ -37,6 +37,10 @@ var thunderSound3 = new Howl({
   src: ['audio/thunder3.wav']
 });
 
+var thunderSound4 = new Howl({
+  src: ['audio/thunder4.wav']
+});
+
 var thunderVolume = volumeDefaults.thunder;
 var thunderEnabled = true;
 
@@ -45,7 +49,7 @@ function toggleThunder() {
 }
 
 function playThunderSound() {
-  var options = [thunderSound1, thunderSound2, thunderSound3];
+  var options = [thunderSound1, thunderSound2, thunderSound3, thunderSound4];
   var choice = options[parseInt(Math.random() * options.length)];
   var id = choice.play();
   choice.volume(thunderVolume, id);
