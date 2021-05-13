@@ -27,3 +27,24 @@ body {
 .no-webgl .nosupport {
 	display: block;
 }
+
+.container {
+	position: relative;
+
+	.ui {
+		position: absolute;
+		width: 100vw;
+		height: 100vh;
+		z-index: 10;
+
+		.header {
+			display: flex;
+			justify-content: center;
+
+			img.logo {
+				max-width: 350px;
+				opacity: 0.75;
+			}
+		}
+	}
+}
