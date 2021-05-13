@@ -11,9 +11,14 @@ import { TweenLite, gsap } from 'gsap';
 import times from './times';
 import { random, chance } from './random';
 
+var volumeDefaults = {
+  rain: 0.5,
+  thunder: 0.8
+}
+
 var rainSound = new Howl({
   src: ['audio/rain.wav'],
-  volume: 0.5,
+  volume: volumeDefaults.rain,
   loop: true
 });
 
@@ -32,7 +37,7 @@ var thunderSound3 = new Howl({
   src: ['audio/thunder3.wav']
 });
 
-var thunderVolume = 1.0;
+var thunderVolume = volumeDefaults.thunder;
 var thunderEnabled = true;
 
 function toggleThunder() {
@@ -46,6 +51,7 @@ function playThunderSound() {
   choice.volume(thunderVolume, id);
 }
 
+document.getElementById("thunder-vol").value = volumeDefaults.thunder * 100;
 document.getElementById("thunder-vol").oninput = function() {
   thunderVolume = this.value/100;
 }
@@ -58,6 +64,7 @@ document.getElementById("thunder-icon").onclick = function() {
     this.parentElement.classList.remove("disabled");
 }
 
+document.getElementById("rain-vol").value = volumeDefaults.rain * 100;
 document.getElementById("rain-vol").oninput = function() {
   rainSound.volume(this.value/100 * 0.5);
 }
@@ -296,8 +303,8 @@ function setupWeatherData(){
 
   weatherData = {
     rain:weather({
-      rainChance:0.35,
-      dropletsRate:50,
+      rainChance:0.3,
+      dropletsRate:40,
       raining:true,
       fg:textureRainFg,
       bg:textureRainBg
