@@ -7,7 +7,7 @@ import RainRenderer from "./rain-renderer";
 import Raindrops from "./raindrops";
 import loadImages from "./image-loader";
 import createCanvas from "./create-canvas";
-import TweenLite from 'gsap';
+import { TweenLite, gsap } from 'gsap';
 import times from './times';
 import { random, chance } from './random';
 
@@ -34,6 +34,7 @@ document.getElementById("rain-icon").onclick = function() {
 }
 
 var isFullscreen = false;
+var uiVisible = true;
 
 function openFullscreen() {
   var elem = document.documentElement;
@@ -64,6 +65,17 @@ document.getElementById("toggle-fullscreen").onclick = function() {
   
   isFullscreen = !isFullscreen;
 }
+
+function toggleUI() {
+  if (uiVisible)
+    gsap.to(".ui", { opacity: 0, display: "none", duration: 1, ease: "power4.easeout" });
+  else
+    gsap.to(".ui", { opacity: 1, display: "flex", duration: 1, ease: "power4.easeout" });
+  
+  uiVisible = !uiVisible;
+}
+
+document.getElementById("toggle-ui").onclick = toggleUI;
 
 let textureRainFg, textureRainBg,
   textureStormLightningFg, textureStormLightningBg,

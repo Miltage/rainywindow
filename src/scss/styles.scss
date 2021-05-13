@@ -53,12 +53,15 @@ body {
 			position: absolute;
 			top: 20px;
 			right: 20px;
+			display: flex;
+			flex-direction: row;
 
 			img {
 				cursor: pointer;
 				opacity: 0.6;
 				-webkit-transition: .2s;
 				transition: opacity .2s;
+				margin: 5px;
 
 				&:hover {
 					opacity: 1;
