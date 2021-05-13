@@ -32,9 +32,17 @@ var thunderSound3 = new Howl({
   src: ['audio/thunder3.wav']
 });
 
+var thunderVolume = 1.0;
+
 function playThunderSound() {
   var options = [thunderSound1, thunderSound2, thunderSound3];
-  options[parseInt(Math.random() * options.length)].play();
+  var choice = options[parseInt(Math.random() * options.length)];
+  var id = choice.play();
+  choice.volume(thunderVolume, id);
+}
+
+document.getElementById("thunder-vol").oninput = function() {
+  thunderVolume = this.value/100;
 }
 
 document.getElementById("rain-vol").oninput = function() {
@@ -239,7 +247,7 @@ function setupFlash() {
     if(chance(curWeatherData.flashChance)){
       flash(curWeatherData.bg, curWeatherData.fg, curWeatherData.flashBg, curWeatherData.flashFg);
     }
-  }, 500);
+  }, 5000);
 }
 
 function setupWeather(){
