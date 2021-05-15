@@ -23,7 +23,7 @@ var rainSound = new Howl({
 });
 
 var id = rainSound.play();
-rainSound.fade(0, volumeDefaults.rain * 0.5, 5000, id);
+rainSound.fade(0, volumeDefaults.rain, 5000, id);
 
 var thunderSound1 = new Howl({
   src: ['audio/thunder1.wav']
@@ -70,7 +70,7 @@ document.getElementById("thunder-icon").onclick = function() {
 
 document.getElementById("rain-vol").value = volumeDefaults.rain * 100;
 document.getElementById("rain-vol").oninput = function() {
-  rainSound.volume(this.value/100 * 0.5);
+  rainSound.volume(this.value/100);
 }
 
 document.getElementById("rain-icon").onclick = function() {
