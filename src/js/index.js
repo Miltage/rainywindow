@@ -338,35 +338,7 @@ function setupWeatherData(){
       flashFg:textureStormLightningFg,
       flashBg:textureStormLightningBg,
       flashChance:0.1
-    }),
-    fallout:weather({
-      minR:30,
-      maxR:60,
-      rainChance:0.35,
-      dropletsRate:20,
-      trailRate:4,
-      fg:textureFalloutFg,
-      bg:textureFalloutBg,
-      collisionRadiusIncrease:0
-    }),
-    drizzle:weather({
-      minR:10,
-      maxR:40,
-      rainChance:0.15,
-      rainLimit:2,
-      dropletsRate:10,
-      dropletsSize:[3.5,6],
-      fg:textureDrizzleFg,
-      bg:textureDrizzleBg
-    }),
-    sunny:weather({
-      rainChance:0,
-      rainLimit:0,
-      droplets:0,
-      raining:false,
-      fg:textureSunFg,
-      bg:textureSunBg
-    }),
+    })
   };
 }
 function updateWeather() {
