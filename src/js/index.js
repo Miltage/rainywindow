@@ -1,4 +1,5 @@
 import '../scss/styles.scss';
+import './ga.js';
 
 import { Howl, Howler } from 'howler';
 import tippy from 'tippy.js';
