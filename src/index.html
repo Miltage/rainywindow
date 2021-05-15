@@ -31,8 +31,8 @@
 		<p class="nosupport">Sorry, but your browser does not support WebGL!</p>
 		<div class="ui">
 			<div class="global-controls">
-				<img src="img/icons/eye.svg" id="toggle-ui" />
-				<img src="img/icons/maximize.svg" id="toggle-fullscreen" />
+				<img src="img/icons/eye.svg" id="toggle-ui" data-tippy-content="Toggle UI (Space)" />
+				<img src="img/icons/maximize.svg" id="toggle-fullscreen"  data-tippy-content="Toggle fullscreen (Enter)" />
 			</div>
 			<div class="header">
 				<img class="logo" src="img/logo.png" />
@@ -40,11 +40,11 @@
 			<div class="weather-controls">
 				<div class="slider-control">
 					<input type="range" min="0" max="100" value="50" class="slider" id="rain-vol" />
-					<img src="img/icons/rain.svg" id="rain-icon" />
+					<img src="img/icons/rain.svg" id="rain-icon" data-tippy="Toggle rain" />
 				</div>
 				<div class="slider-control">
 					<input type="range" min="0" max="100" value="100" class="slider" id="thunder-vol" />
-					<img src="img/icons/lightning.svg" id="thunder-icon" />
+					<img src="img/icons/lightning.svg" id="thunder-icon" data-tippy="Toggle lightning" />
 				</div>
 			</div>
 		</div>

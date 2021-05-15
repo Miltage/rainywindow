@@ -32,6 +32,10 @@ module.exports = {
                     // Compiles Sass to CSS
                     "sass-loader",
                 ],
+            },
+            {
+                test: /\.css$/i,
+                use: ["style-loader", "css-loader"],
             }
         ]
     }

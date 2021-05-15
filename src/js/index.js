@@ -1,6 +1,18 @@
 import '../scss/styles.scss';
 
-import { Howl, Howler } from 'howler';
+import { Howl } from 'howler';
+import tippy from 'tippy.js';
+import 'tippy.js/dist/tippy.css';
+import 'tippy.js/themes/translucent.css';
+import 'tippy.js/animations/scale.css';
+
+tippy.setDefaultProps({ delay: 150, theme: 'translucent', offset: [0, 10], inertia: true, animation: 'scale' });
+tippy('[data-tippy-content]');
+tippy('.weather-controls [data-tippy]', {
+  offset: [0, 20],
+  content: (reference) => reference.getAttribute('data-tippy'),
+  placement: 'bottom'
+});
 
 import 'core-js';
 import RainRenderer from "./rain-renderer";
