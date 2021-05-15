@@ -174,6 +174,15 @@ function toggleAudio() {
 
 document.getElementById("toggle-audio").onclick = toggleAudio;
 
+var showCredits = false;
+document.getElementById("toggle-credits").onclick = function() {
+  showCredits = !showCredits;
+  if (showCredits)
+    gsap.to(".credits", { opacity: 1, display: "block", duration: 0.5, ease: "power4.easeout" });
+  else
+    gsap.to(".credits", { opacity: 0, display: "none", duration: 0.5, ease: "power4.easeout" });
+};
+
 let textureRainFg, textureRainBg,
   textureStormLightningFg, textureStormLightningBg,
   textureFalloutFg, textureFalloutBg,
