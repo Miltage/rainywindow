@@ -143,7 +143,6 @@ function toggleUI() {
 document.getElementById("toggle-ui").onclick = toggleUI;
 
 document.onkeypress = (event) => {
-  console.log(event.code);
   switch (event.code) {
     case "KeyM":
       toggleAudio();
@@ -183,6 +182,16 @@ document.getElementById("toggle-credits").onclick = function() {
   else
     gsap.to(".credits", { opacity: 0, display: "none", duration: 0.5, ease: "power4.easeout" });
 };
+
+var bodyClicked = false;
+document.onclick = function() {
+  if (bodyClicked && !uiVisible)
+    toggleUI();
+
+  bodyClicked = true;
+
+  setTimeout(() => bodyClicked = false, 200);
+}
 
 let textureRainFg, textureRainBg,
   textureStormLightningFg, textureStormLightningBg,
