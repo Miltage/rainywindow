@@ -5,7 +5,7 @@ module.exports = {
     mode: 'development',
     entry: './src/js/index.js',
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'docs'),
         filename: 'dist.bundle.js',
     },
     plugins: [
@@ -18,7 +18,7 @@ module.exports = {
         }),
     ],
     devServer: {
-        contentBase: './dist',
+        contentBase: './docs',
     },
     module: {
         rules: [
