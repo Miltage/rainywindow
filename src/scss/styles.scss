@@ -67,6 +67,10 @@ body {
 				transition: opacity .2s;
 				margin: 5px;
 
+				&.disabled {
+					opacity: 0.25;
+				}
+
 				&:hover {
 					opacity: 1;
 				}

@@ -1,6 +1,6 @@
 import '../scss/styles.scss';
 
-import { Howl } from 'howler';
+import { Howl, Howler } from 'howler';
 import tippy from 'tippy.js';
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/themes/translucent.css';
@@ -55,6 +55,7 @@ var thunderSound4 = new Howl({
 
 var thunderVolume = volumeDefaults.thunder;
 var thunderEnabled = true;
+var audioMuted = false;
 
 function toggleThunder() {
   thunderEnabled = !thunderEnabled;
@@ -141,7 +142,11 @@ function toggleUI() {
 document.getElementById("toggle-ui").onclick = toggleUI;
 
 document.onkeypress = (event) => {
+  console.log(event.code);
   switch (event.code) {
+    case "KeyM":
+      toggleAudio();
+      break;
     case "Space":
       toggleUI();
       break;
@@ -156,6 +161,18 @@ document.onkeypress = (event) => {
       return; // Quit when this doesn't handle the key event.
   }
 }
+
+function toggleAudio() {
+  audioMuted = !audioMuted;
+  Howler.mute(audioMuted);
+
+  if (audioMuted)
+    document.getElementById("toggle-audio").classList.add("disabled");
+  else
+    document.getElementById("toggle-audio").classList.remove("disabled");
+}
+
+document.getElementById("toggle-audio").onclick = toggleAudio;
 
 let textureRainFg, textureRainBg,
   textureStormLightningFg, textureStormLightningBg,
