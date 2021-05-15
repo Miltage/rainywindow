@@ -12,6 +12,7 @@ module.exports = {
         new CopyPlugin({
           patterns: [
             { from: "src/index.html" },
+            { from: "src/favicon.ico" },
             { from: "src/img", to: "img" },
             { from: "src/audio", to: "audio" },
           ],
