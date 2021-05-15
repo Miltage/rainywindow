@@ -36,6 +36,7 @@ var rainSound = new Howl({
 
 var id = rainSound.play();
 rainSound.fade(0, volumeDefaults.rain, 5000, id);
+gsap.to("#cover", { opacity: 0, display: "none", duration: 5, ease: "power4.easeout" });
 
 var thunderSound1 = new Howl({
   src: ['audio/thunder1.wav']
