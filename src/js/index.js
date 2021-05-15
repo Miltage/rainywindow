@@ -193,9 +193,7 @@ document.onclick = function() {
   setTimeout(() => bodyClicked = false, 200);
 }
 
-let textureRainFg, textureRainBg,
-  textureStormLightningFg, textureStormLightningBg,
-  dropColor, dropAlpha;
+let cityTexture, cityTextureFlash, dropColor, dropAlpha;
 
 let textureFg,
   textureFgCtx,
@@ -221,15 +219,11 @@ function loadTextures(){
   loadImages([
     {name:"dropAlpha",src:"img/drop-alpha.png"},
     {name:"dropColor",src:"img/drop-color.png"},
-    {name:"textureRainFg",src:"img/weather/city.png"},
-    {name:"textureRainBg",src:"img/weather/city.png"},
-    {name:"textureStormLightningFg",src:"img/weather/city-flash.png"},
-    {name:"textureStormLightningBg",src:"img/weather/city-flash.png"}
+    {name:"cityTexture",src:"img/weather/city.png"},
+    {name:"cityTextureFlash",src:"img/weather/city-flash.png"},
   ]).then((images) => {
-    textureRainFg = images.textureRainFg.img;
-    textureRainBg = images.textureRainBg.img;
-    textureStormLightningFg = images.textureStormLightningFg.img;
-    textureStormLightningBg = images.textureStormLightningBg.img;
+    cityTexture = images.cityTexture.img;
+    cityTextureFlash = images.cityTextureFlash.img;
     dropColor = images.dropColor.img;
     dropAlpha = images.dropAlpha.img;
     init();
@@ -270,7 +264,7 @@ function init(){
   textureBg = createCanvas(textureBgSize.width,textureBgSize.height);
   textureBgCtx = textureBg.getContext('2d');
 
-  generateTextures(textureRainFg, textureRainBg);
+  generateTextures(cityTexture, cityTexture);
 
   renderer = new RainRenderer(canvas, raindrops.canvas, textureFg, textureBg, null,{
     brightness:1.04,
@@ -377,8 +371,8 @@ function flash(baseBg,baseFg,flashBg,flashFg){
         v:to,
         ease: "power4.out",
         onUpdate:()=>{
-          generateTextures(baseFg,baseBg);
-          generateTextures(flashFg,flashBg,flashValue.v);
+          generateTextures(baseFg, baseBg);
+          generateTextures(flashFg, flashBg, flashValue.v);
           renderer.updateTextures();
         },
         onComplete:()=>{
@@ -404,7 +398,7 @@ function flash(baseBg,baseFg,flashBg,flashFg){
 
 }
 
-function generateTextures(fg,bg,alpha=1){
+function generateTextures(fg, bg, alpha=1){
   textureFgCtx.globalAlpha=alpha;
   textureFgCtx.drawImage(fg,0,0,textureFgSize.width,textureFgSize.height);
 
