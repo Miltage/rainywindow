@@ -13,7 +13,7 @@ import { random, chance } from './random';
 
 var volumeDefaults = {
   rain: 0.5,
-  thunder: 0.8
+  thunder: 0.7
 }
 
 var rainSound = new Howl({
@@ -23,7 +23,7 @@ var rainSound = new Howl({
 });
 
 var id = rainSound.play();
-rainSound.fade(0, 0.5, 10000, id);
+rainSound.fade(0, volumeDefaults.rain * 0.5, 5000, id);
 
 var thunderSound1 = new Howl({
   src: ['audio/thunder1.wav']
