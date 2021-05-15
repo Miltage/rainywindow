@@ -186,9 +186,6 @@ document.getElementById("toggle-credits").onclick = function() {
 
 let textureRainFg, textureRainBg,
   textureStormLightningFg, textureStormLightningBg,
-  textureFalloutFg, textureFalloutBg,
-  textureSunFg, textureSunBg,
-  textureDrizzleFg, textureDrizzleBg,
   dropColor, dropAlpha;
 
 let textureFg,
@@ -209,46 +206,23 @@ let raindrops, renderer, canvas, flashInterval;
 
 let weatherData=null;
 let curWeatherData=null;
-let blend={v:0};
+let blend = { v:0 };
 
 function loadTextures(){
   loadImages([
     {name:"dropAlpha",src:"img/drop-alpha.png"},
     {name:"dropColor",src:"img/drop-color.png"},
-
     {name:"textureRainFg",src:"img/weather/city.png"},
     {name:"textureRainBg",src:"img/weather/city.png"},
-
     {name:"textureStormLightningFg",src:"img/weather/city-flash.png"},
-    {name:"textureStormLightningBg",src:"img/weather/city-flash.png"},
-
-    {name:"textureFalloutFg",src:"img/weather/texture-fallout-fg.png"},
-    {name:"textureFalloutBg",src:"img/weather/texture-fallout-bg.png"},
-
-    {name:"textureSunFg",src:"img/weather/texture-sun-fg.png"},
-    {name:"textureSunBg",src:"img/weather/texture-sun-bg.png"},
-
-    {name:"textureDrizzleFg",src:"img/weather/texture-drizzle-fg.png"},
-    {name:"textureDrizzleBg",src:"img/weather/texture-drizzle-bg.png"},
-  ]).then((images)=>{
+    {name:"textureStormLightningBg",src:"img/weather/city-flash.png"}
+  ]).then((images) => {
     textureRainFg = images.textureRainFg.img;
     textureRainBg = images.textureRainBg.img;
-
-    textureFalloutFg = images.textureFalloutFg.img;
-    textureFalloutBg = images.textureFalloutBg.img;
-
     textureStormLightningFg = images.textureStormLightningFg.img;
     textureStormLightningBg = images.textureStormLightningBg.img;
-
-    textureSunFg = images.textureSunFg.img;
-    textureSunBg = images.textureSunBg.img;
-
-    textureDrizzleFg = images.textureDrizzleFg.img;
-    textureDrizzleBg = images.textureDrizzleBg.img;
-
     dropColor = images.dropColor.img;
     dropAlpha = images.dropAlpha.img;
-
     init();
   });
 }
