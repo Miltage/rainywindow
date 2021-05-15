@@ -309,10 +309,10 @@ function setupWeatherData(){
     dropletsSize:[3,5.5],
     trailRate:1,
     trailScaleRange:[0.25,0.35],
-    fg:textureRainFg,
-    bg:textureRainBg,
-    flashFg:textureStormLightningFg,
-    flashBg:textureStormLightningBg,
+    fg:cityTexture,
+    bg:cityTexture,
+    flashFg:cityTextureFlash,
+    flashBg:cityTextureFlash,
     flashChance:0.1,
     collisionRadiusIncrease:0.0002
   };
@@ -326,21 +326,6 @@ function setupWeatherData(){
       rainChance:0.3,
       dropletsRate:40,
       raining:true,
-      fg:textureRainFg,
-      bg:textureRainBg
-    }),
-    storm:weather({
-      maxR:55,
-      rainChance:0.4,
-      dropletsRate:80,
-      dropletsSize:[3,5.5],
-      trailRate:2.5,
-      trailScaleRange:[0.25,0.4],
-      fg:textureRainFg,
-      bg:textureRainBg,
-      flashFg:textureStormLightningFg,
-      flashBg:textureStormLightningBg,
-      flashChance:0.1
     })
   };
 }
