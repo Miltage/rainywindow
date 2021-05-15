@@ -9,9 +9,25 @@
 	<meta name="description" content="A virtual window to stare out of while you work" />
 	<meta name="author" content="Robert Shenton" />
 	<link rel="shortcut icon" href="favicon.ico">
+	<style>
+		#cover {
+			position: absolute;
+			width: 100vw;
+			height: 100vh;
+			background-color: black;
+			z-index: 100;
+		}
+
+		.image-preload {
+			position: absolute;
+			left: -9999px;
+			visibility: hidden;
+		}
+
+	</style>
 </head>
 
-<body class="demo-1">
+<body>
 	<div class="image-preload">
 		<img src="img/drop-color.png" alt="">
 		<img src="img/drop-alpha.png" alt="">

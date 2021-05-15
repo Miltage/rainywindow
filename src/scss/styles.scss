@@ -20,12 +20,6 @@ a {
 	}
 }
 
-.image-preload {
-	position: absolute;
-	left: -9999px;
-	visibility: hidden;
-}
-
 .nosupport {
 	display: none;
 	margin: 0 auto;
@@ -186,20 +180,4 @@ a {
 			}
 		}
 	}
-}
-
-#tooltip {
-    background-color: #333;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-size: 13px;
-}
-
-#cover {
-	position: absolute;
-	width: 100vw;
-	height: 100vh;
-	background-color: black;
-	z-index: 100;
 }
